@@ -5,6 +5,7 @@ const requireAuth = ( async (req, res, next)=>{
 
     const SECRET = `highscoretechBringwexsingthebestamoung23498hx93`
 
+
     const  {authorization}  = req.headers
 
     if(!authorization){
@@ -17,8 +18,7 @@ const requireAuth = ( async (req, res, next)=>{
 
         req.user = await User.findOne({_id}).select("_id")
 
-        res.json({response: "access granted"})
-        // next()
+        next()
         } catch (error) {
             res.status(404).json({error: "Request not authorized"})
         }
