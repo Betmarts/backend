@@ -10,6 +10,7 @@ router.use(requireAuth)
 router.get('/userprofile', UserPro)
 
 router.get ('/singlepro', SingleUser)
+
 //..added 
 router.post('/update-profile', UpdateUser)
 

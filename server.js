@@ -5,8 +5,6 @@ const Users = require('./routes/Users')
 const UserProfile = require('./routes/Profile')
 const Admin = require('./routes/Amin')
 
-
-
 const cors = require('cors');
 
 require('dotenv').config()
@@ -16,10 +14,16 @@ app.use(express.json())
 app.use(cors())
 
 
+
+
+
+
+// Routes Contollers
 app.use('/api/sports', SportRoute)
 app.use('/api/users', Users)
 app.use('/api/profile', UserProfile)
 app.use('/api/admin', Admin)
+
 
 
 mongoose.set('strictQuery', false);

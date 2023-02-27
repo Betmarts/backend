@@ -2,16 +2,16 @@ const mongoose = require('mongoose')
 const UserProfile =  require('../model/users')
 const UsersProfile =  require('../model/profile')
 
+
 // Get single user's profile
 const SingleUser = async(req,res) =>{
    const user_id = req.user._id
-   console.log(user_id)
    try{
       const users =   await UsersProfile.find({user_id })
       res.status(200).json(users)
    }
    catch(err){
-      res.status(409).json({message: err.message})
+      res.status(501).json({message: err.message})
    }
 }
 

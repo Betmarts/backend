@@ -5,10 +5,11 @@ const UsersEl = require('../model/users')
 const userProfileEl = require('../model/profile')
 const OtpDB = require('../model/otp')
 
+// const DeviceDetector = require('node-device-detector');
+
 const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer');
  
-
 let SECRET = "highscoretechBringwexsingthebestamoung23498hx93"
 
 const createToken = ((_id)=>{
@@ -29,6 +30,18 @@ const loginUser = (async (req, res)=>{
             if (!match){
                 res.status(401).json({error : "Incorrect password"})
             }else{
+
+                // const detector = new DeviceDetector({
+                //     clientIndexes: true,
+                //     deviceIndexes: true,
+                //     deviceAliasCode: false,
+                //   });
+                
+                
+                // const userAgent = 'Mozilla/5.0 (Linux; Android 5.0; NX505J Build/KVT49L) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.78 Mobile Safari/537.36';
+                // const result = detector.detect(userAgent);
+                // console.log('result parse', result);
+
                 try{
                    // create token
                    const Token = createToken(exist._id)
