@@ -2,27 +2,35 @@ const mongoose = require("mongoose");
 const schema = mongoose.Schema
 
 const depositSchema = new schema({
-    ID: {
+    user_id: {
         type: String,
         required: true,
     },
-    currency: {
+    coin_name: {
         type: String,
         required: true,
     },
-    network: {
+    coin_amount: {
         type: String,
         required: true,
     },
-    amount: {
+    usd_amount: {
         type: String,
         required: true
     },
-    walletaddress: {
+    wallet_address: {
         type: String,
         required: true,
     },
-    depositamount: {
+    gas_fee: {
+        type: String,
+        required: true,
+    },
+    network_address: {
+        type: String,
+        required: true
+    },
+    type: {
         type: String,
         required: true
     },
@@ -30,7 +38,7 @@ const depositSchema = new schema({
         type: String,
         required: true
     },
-    date: {
+    date_time: {
         type: String,
         required: true
     }

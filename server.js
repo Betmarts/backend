@@ -1,10 +1,13 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const SportRoute= require('./routes/Sport')
 const Users = require('./routes/Users')
 const UserProfile = require('./routes/Profile')
 const Admin = require('./routes/Amin')
 const Slip = require('./routes/Betslip')
+const Transaction = require('./routes/Transaction')
+
+const Sport = require('./routes/Sport')
+
 
 const cors = require('cors');
 
@@ -16,12 +19,14 @@ app.use(cors())
 
 
 // Routes Contollers
-app.use('/api/sports', SportRoute)
 app.use('/api/users', Users)
 app.use('/api/profile', UserProfile)
 app.use('/api/admin', Admin)
 app.use('/api/bet', Slip)
+app.use('/api/transaction', Transaction)
 
+// Sport routes
+app.use('/api/sport', Sport)
 
 
 mongoose.set('strictQuery', false);

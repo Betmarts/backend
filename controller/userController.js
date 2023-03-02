@@ -2,13 +2,14 @@ const User = require('../model/users')
 const bcrypt = require("bcryptjs");
 const validator = require('validator')
 const UsersEl = require('../model/users')
+const WalletDB = require('../model/Wallet')
 const userProfileEl = require('../model/profile')
 const OtpDB = require('../model/otp')
 
 // const DeviceDetector = require('node-device-detector');
 
 const jwt = require('jsonwebtoken')
-const nodemailer = require('nodemailer');
+// const nodemailer = require('nodemailer');
  
 let SECRET = "highscoretechBringwexsingthebestamoung23498hx93"
 
@@ -30,18 +31,6 @@ const loginUser = (async (req, res)=>{
             if (!match){
                 res.status(401).json({error : "Incorrect password"})
             }else{
-
-                // const detector = new DeviceDetector({
-                //     clientIndexes: true,
-                //     deviceIndexes: true,
-                //     deviceAliasCode: false,
-                //   });
-                
-                
-                // const userAgent = 'Mozilla/5.0 (Linux; Android 5.0; NX505J Build/KVT49L) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.78 Mobile Safari/537.36';
-                // const result = detector.detect(userAgent);
-                // console.log('result parse', result);
-
                 try{
                    // create token
                    const Token = createToken(exist._id)
@@ -120,9 +109,21 @@ const SigninCredentials = (async (req, res)=>{
         let bankName = "-"
         let acc_num = "-"
         let acc_name = "-"
-        let mainBal = 0
-        let exposure = 0
+        let mainBal = 0.000
+        let exposure = 0.000
+        let btc = 0.0000
+        let eth = 0.0000
+        let nexo = 0.0000
+        let sol = 0.0000
+        let usdc = 0.000
+        let usdt = 0.000
+        let matic = 0.0000
+        let bnb = 0.0000
+        let busd = 0.0000
+
         const user = await UsersEl.create({ email , password : hash })
+
+         await WalletDB.create({ user_id:user._id , btc , eth, nexo,sol,usdc,usdt ,matic,bnb,busd })
 
         await userProfileEl.create({ firstname, surname, DOB, country, gender, bankName, acc_name, acc_num, mainBal, exposure, user_id:user._id })
         // create token

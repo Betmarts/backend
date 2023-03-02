@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const UserProfile =  require('../model/users')
 const UsersProfile =  require('../model/profile')
+const WalletDB = require("../model/Wallet")
 
 
 // Get single user's profile
@@ -8,6 +9,18 @@ const SingleUser = async(req,res) =>{
    const user_id = req.user._id
    try{
       const users =   await UsersProfile.find({user_id })
+      res.status(200).json(users)
+   }
+   catch(err){
+      res.status(501).json({message: err.message})
+   }
+}
+
+// Get single user's Wallet
+const Wallet = async(req,res) =>{
+   const user_id = req.user._id
+   try{
+      const users =   await WalletDB.find({user_id })
       res.status(200).json(users)
    }
    catch(err){
@@ -51,4 +64,4 @@ const UpdateUser = async(req, res) =>{
       }
    }
 }
-module.exports = {SingleUser, UserPro, UpdateUser }
+module.exports = {SingleUser, UserPro, Wallet, UpdateUser }
