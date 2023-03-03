@@ -2,53 +2,8 @@ const axios = require('axios')
 
 let API_KEY = '28e187c830dda905dca2181caeb576ac61d7d7f64dfe62c6308a210ab0218758'
 
-// let a = [{
-//     key: 23,
-//     fol: "loa",
-//     country: "Niger"
-// },
-// {
-//     key: 22,
-//     fol: "loa",
-//     country: "England"
-// }]
-
-// let re = [
-//     {
-//         11: [
-//             {
-//                 how: "milk",
-//                 low: "tea"
-//             }
-//         ],
-//         12: [
-//             {
-//                 how: "teach",
-//                 low: "Laptop"
-//             }
-//         ],
-//         22: [
-//             {
-//                 how: "school",
-//                 low: "knowledge"
-//             }
-//         ],
-//         23: [
-//             {
-//                 how: "codeing",
-//                 low: "hard"
-//             }
-//         ],
-//     }
-// ]
-
-// var newArray = a.filter((el) => {
-//     console.log(re[0][el.key] );
-// });
-
-
 var date = new Date();
- 
+
 // Get year, month, and day part from the date
 var year = date.toLocaleString("default", { year: "numeric" });
 var month = date.toLocaleString("default", { month: "2-digit" });
@@ -60,7 +15,6 @@ var formattedDate =  year + "-" + month  + "-" +  day
 var week =  year + "-" + month  + "-" + ( parseInt(day) + 6 )
 
 const Country = ( async (req, res)=>{
-
     await axios.get(`https://apiv2.allsportsapi.com/football/?met=Countries&APIkey=${API_KEY}`)
     .then((response)=>{
         res.status(200).json(response.data)
@@ -103,8 +57,6 @@ const Fixtures = ( async (req, res)=>{
     if(!leagueId || !sport_name){
         res.status(500).json({error: "League Id is missing"})
     }else{
-
-
         try{
             await axios.get(`https://apiv2.allsportsapi.com/${sport_name}/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDate}&to=${week}&leagueId=${leagueId}`)
             .then((response)=>{

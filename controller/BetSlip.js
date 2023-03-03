@@ -72,8 +72,7 @@ const displayMulti = async(req,res) =>{
     let odd = []
     let fixture = []
 
-
-     multiResult.filter((el) => {
+    multiResult.filter((el) => {
         return game.push(parseInt(el.game_id))
     });
 
