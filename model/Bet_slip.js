@@ -15,7 +15,7 @@ const BetSlipschema = new schema({
         type: String,
         required: true
     },
-    user_Id: {
+    user_id: {
         type: String,
         required: true
     }
