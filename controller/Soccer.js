@@ -15,13 +15,24 @@ var formattedDate =  year + "-" + month  + "-" +  day
 var week =  year + "-" + month  + "-" + ( parseInt(day) + 6 )
 
 const Country = ( async (req, res)=>{
-    await axios.get(`https://apiv2.allsportsapi.com/football/?met=Countries&APIkey=${API_KEY}`)
-    .then((response)=>{
-        res.status(200).json(response.data)
-    })
-    .catch((error)=>{
-        res.status(404).json(error)
-    })
+    try{
+        await axios.get(`https://apiv2.allsportsapi.com/football/?met=Countries&APIkey=${API_KEY}`)
+        .then((response)=>{
+            let resu = (response.data.result)
+    
+            let coun = ["South Africa", "Belgium", "Cyprus", "England", "Europe", "Germany", "Netherlands", "Italy", "Spain", "India", "Kazakhstan"]
+    
+            let go = resu.filter((el)=>{
+                return coun.includes(el.country_name)
+            })
+          res.status(200).json(go)
+        })
+        .catch((error)=>{
+            res.status(404).json(error)
+        })
+    }catch(err){
+        res.status(404).json({error: "Request not found"})
+    }
 })
 
 const Livescore = ( async (req, res)=>{
@@ -115,8 +126,6 @@ const Fixtures = ( async (req, res)=>{
 
     }
 })
-
-
 
 const Match = ( async (req, res)=>{
     const {sport_name, matchId } = req.body
