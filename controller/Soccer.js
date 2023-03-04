@@ -49,6 +49,38 @@ const League = ( async (req, res)=>{
     }
 })
 
+const defaultFixtures = ( async (req, res)=>{
+
+    let odd = []
+    let fixture = []
+
+        try{
+            await axios.get(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDate}&to=${week}&leagueId=152`)
+            .then((response)=>{
+                fixture.push(response.data.result)
+            })
+            .catch((error)=>{
+                res.status(404).json(error)
+            })
+
+        for(let i = 0; i < fixture[0].length; i++){
+            await axios.get(`https://apiv2.allsportsapi.com/football/?&met=Odds&APIkey=${API_KEY}&matchId=${fixture[0][i].event_key}`)
+            .then((response)=>{
+                odd.push(response.data.result)
+            })
+            .catch((error)=>{
+                res.status(404).json(error)
+            })
+        }
+        res.status(200).json({fixture, odd})
+
+    }catch(err){
+        res.status(400).json(err)
+    }
+
+})
+
+
 const Fixtures = ( async (req, res)=>{
     const {sport_name, leagueId } = req.body
     let odd = []
@@ -85,6 +117,7 @@ const Fixtures = ( async (req, res)=>{
 })
 
 
+
 const Match = ( async (req, res)=>{
     const {sport_name, matchId } = req.body
 
@@ -116,4 +149,4 @@ const Odds = ( async (req, res)=>{
     }
 })
 
-module.exports = {Country, League , Fixtures, Livescore, Match, Odds}
+module.exports = {Country, defaultFixtures, League , Fixtures, Livescore, Match, Odds}
