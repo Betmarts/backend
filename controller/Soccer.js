@@ -11,7 +11,7 @@ var day = date.toLocaleString("default", { day: "2-digit" });
 
 // Generate yyyy-mm-dd date string
 var formattedDate =  year + "-" + month  + "-" +  day 
-
+9
 var week =  year + "-" + month  + "-" + ( parseInt(day) + 6 )
 
 const Country = ( async (req, res)=>{
@@ -19,9 +19,7 @@ const Country = ( async (req, res)=>{
         await axios.get(`https://apiv2.allsportsapi.com/football/?met=Countries&APIkey=${API_KEY}`)
         .then((response)=>{
             let resu = (response.data.result)
-    
             let coun = ["South Africa", "Belgium", "Cyprus", "England", "Europe", "Germany", "Netherlands", "Italy", "Spain", "India", "Kazakhstan"]
-    
             let go = resu.filter((el)=>{
                 return coun.includes(el.country_name)
             })
@@ -77,18 +75,16 @@ const defaultFixtures = ( async (req, res)=>{
         for(let i = 0; i < fixture[0].length; i++){
             await axios.get(`https://apiv2.allsportsapi.com/football/?&met=Odds&APIkey=${API_KEY}&matchId=${fixture[0][i].event_key}`)
             .then((response)=>{
-                odd.push(response.data.result)
+                odd.push(response.data.result[fixture[0][i].event_key][0])
             })
             .catch((error)=>{
                 res.status(404).json(error)
             })
         }
         res.status(200).json({fixture, odd})
-
     }catch(err){
         res.status(400).json(err)
     }
-
 })
 
 

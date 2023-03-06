@@ -25,14 +25,13 @@ const BookingCode = async(req,res) =>{
         }
     }
 }
- 
 
 
 // Get all user's profile
 const Booking = async(req,res) =>{
 
     const { bet_slip, stake_amount, potential_win, total_odds } = req.body
- 
+    
     if(!bet_slip, !stake_amount || !potential_win || !total_odds){
         res.status(401).json({message: "Field can't be empty"})
     }
