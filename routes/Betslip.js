@@ -11,6 +11,6 @@ router.use(requireAuth)
 router.post('/slip', BetSlip)
 router.get('/get-multimarket', displayMulti)
 router.post('/multi-slip', MultiSlip)
-router.delete('/delete-slip', Delete_Multi)
+router.post('/delete-slip', Delete_Multi)
 
 module.exports = router

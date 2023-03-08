@@ -16,7 +16,6 @@ var formattedDate =  year + "-" + month  + "-" +  day
 
 var week =  year + "-" + month  + "-" + ( parseInt(day) + 6 )
 
-
 // Get all user's profile
 const BetSlip = async(req,res) =>{
 
@@ -37,13 +36,10 @@ const BetSlip = async(req,res) =>{
         }
     }
 }
- 
 
 // Get all user's profile
 const MultiSlip = async(req,res) =>{
-
     const { game_id, game_type } = req.body
-
     if(!game_id || !game_type ){
         res.status(401).json({message: "Field can't be empty"})
     }
@@ -60,14 +56,10 @@ const MultiSlip = async(req,res) =>{
 }
 
 const displayMulti = async(req,res) =>{
-
         const user_id = req.user._id
-
         let a = ""
     try{
-
     const multiResult = await MultiDB.find({user_id})
-
     let game = []
     let odd = []
     let fixture = []
@@ -105,26 +97,22 @@ const displayMulti = async(req,res) =>{
 }
 
 
-
 // Get all user's profile
 const Delete_Multi = async(req,res) =>{
-
-    const { game_id, game_type } = req.body
-
-    if(!game_id || !game_type ){
-        res.status(401).json({message: "Field can't be empty"})
-    }
-    else{
-        const user_Id = req.user._id
+    const  { id } = req.body
+    if( !id ){
+        res.status(404).json({error: "NO suchID"})
+    }else{
         try{
-            let data =  await MultiDB.create({ game_id, game_type, user_Id })
-            res.status(200).json(data)
+            MultiDB.deleteOne({ _id: id }, function (err) {
+                if(err) console.log(err);
+                res.status(200).json({message : "Deleted succesfully"})
+            });
         }
         catch(err){
             res.status(401).json({error: err.message})
         }
     }
 }
-
 
 module.exports = { BetSlip, MultiSlip,displayMulti, Delete_Multi }

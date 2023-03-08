@@ -145,7 +145,6 @@ const defaultFixtures_Cricket = ( async (req, res)=>{
 const defaultFixtures_Tennis = ( async (req, res)=>{
     let odd = []
     let fixture = []
-
     try{
         await axios.get(`https://apiv2.allsportsapi.com/tennis/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDate}&to=${week}`)
         .then((response)=>{

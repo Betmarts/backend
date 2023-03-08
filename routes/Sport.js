@@ -9,7 +9,6 @@ router.get('/default-fixture', defaultFixtures)
 router.get('/default/cricket', defaultFixtures_Cricket)
 router.get('/default/tennis', defaultFixtures_Tennis)
 
-
 router.post('/league', League)
 router.get('/cricket/league', Cricket_league )
 router.get('/tennis/league', Tennis_league )
