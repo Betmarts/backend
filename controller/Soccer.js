@@ -111,6 +111,7 @@ const defaultFixtures = ( async (req, res)=>{
     }
 })
 
+
 const defaultFixtures_Cricket = ( async (req, res)=>{
     let odd = []
     let fixture = []
@@ -145,18 +146,16 @@ const defaultFixtures_Tennis = ( async (req, res)=>{
     let odd = []
     let fixture = []
 
-        try{
-            // await axios.get(`https://apiv2.allsportsapi.com/tennis/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDate}&to=${week}`)
-            // .then((response)=>{
-            //     fixture.push(response.data.result)
-            // })
-            // .catch((error)=>{
-            //     res.status(404).json(error)
-            // })
+    try{
+        await axios.get(`https://apiv2.allsportsapi.com/tennis/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDate}&to=${week}`)
+        .then((response)=>{
+            fixture.push(response.data.result)
+        })
+        .catch((error)=>{
+            res.status(404).json(error)
+        })
 
-
-        // for(let i = 0; i < fixture[0].length; i++){
-        //     console.log()
+     for(let i = 0; i < fixture[0].length; i++){
             await axios.get(`https://apiv2.allsportsapi.com/tennis/?&met=Odds&matchId=7349508&APIkey=${API_KEY}`)
             .then((response)=>{
                 odd.push(response.data)
@@ -164,8 +163,8 @@ const defaultFixtures_Tennis = ( async (req, res)=>{
             .catch((error)=>{
                 res.status(404).json(error)
             })
-        // }
-        res.status(200).json({odd})
+        }
+        res.status(200).json({fixture})
     }catch(err){
         res.status(400).json(err)
     }
