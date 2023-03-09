@@ -58,8 +58,8 @@ const Cricket_league = ( async (req, res)=>{
         res.status(404).json(error)
     })
 })
-const Tennis_league = ( async (req, res)=>{
 
+const Tennis_league = ( async (req, res)=>{
     await axios.get(`https://apiv2.allsportsapi.com/tennis/?met=Leagues&APIkey=${API_KEY}`)
     .then((response)=>{
         res.status(200).json(response.data)
@@ -96,7 +96,6 @@ const defaultFixtures = ( async (req, res)=>{
     }
 })
 
-
 const defaultFixtures_Cricket = ( async (req, res)=>{
     let odd = []
     let fixture = []
@@ -109,18 +108,17 @@ const defaultFixtures_Cricket = ( async (req, res)=>{
             .catch((error)=>{
                 res.status(404).json(error)
             })
-
-        for(let i = 0; i < fixture.length; i++){
-            console.log()
-            await axios.get(`https://apiv2.allsportsapi.com/cricket/?&met=Odds&matchId=${fixture[i].event_key}&APIkey=${API_KEY}`)
-            .then((response)=>{
-                odd.push(response.data.result[fixture[i].event_key])
-            })
-            .catch((error)=>{
-                res.status(404).json(error)
-            })
-        }
-        res.status(200).json({fixture, odd})
+            // 5968
+        // for(let i = 0; i < fixture.length; i++){
+                // await axios.get(`https://apiv2.allsportsapi.com/cricket/?&met=Odds&matchId=5968&APIkey=${API_KEY}`)
+                // .then((response)=>{
+                //     odd.push(response.data)
+                // })
+                // .catch((error)=>{
+                //     res.status(404).json(error)
+                // })
+        // }
+        res.status(200).json({fixture})
     }catch(err){
         res.status(400).json(err)
     }
@@ -159,7 +157,6 @@ const Fixtures = ( async (req, res)=>{
     const {sport_name, leagueId } = req.body
     let odd = []
     let fixture = []
-
     if(!leagueId || !sport_name){
         res.status(500).json({error: "League Id is missing"})
     }else{
@@ -171,7 +168,6 @@ const Fixtures = ( async (req, res)=>{
             .catch((error)=>{
                 res.status(404).json(error)
             })
-
             for(let i = 0; i < fixture[0].length; i++){
                 await axios.get(`https://apiv2.allsportsapi.com/football/?&met=Odds&APIkey=${API_KEY}&matchId=${fixture[0][i].event_key}`)
                 .then((response)=>{
@@ -182,11 +178,9 @@ const Fixtures = ( async (req, res)=>{
                 })
             }
             res.status(200).json({fixture, odd})
-
-    }catch(err){
-        res.status(400).json(err)
-    }
-
+        }catch(err){
+            res.status(400).json(err)
+        }
     }
 })
 
@@ -261,7 +255,6 @@ var dayel = date.toLocaleString("default", { day: "2-digit" });
 // Generate yyyy-mm-dd date string
 var formattedDateEL =  yearel + "-" + monthel  + "-" +  dayel
 
-
 const TodayFootball = ( async (req, res)=>{
     await axios.get(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDateEL}&to=${formattedDateEL}`)
     .then((response)=>{
@@ -300,7 +293,6 @@ var dayPO = date.toLocaleString("default", { day: "2-digit" });
 
 // Generate yyyy-mm-dd date string
 var formattedDatePO =  yearPO + "-" + monthPO  + "-" + ( parseInt(dayPO) + 1 )
-
 
 const TommorowTennis = ( async (req, res)=>{
     await axios.get(`https://apiv2.allsportsapi.com/tennis/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDatePO}&to=${formattedDatePO}`)

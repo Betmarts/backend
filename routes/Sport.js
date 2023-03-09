@@ -5,15 +5,15 @@ const {Country, League, Fixtures, Livescore, Match, Odds, defaultFixtures,  defa
 
 router.get('/country', Country)
 
+router.post('/league', League)
+router.get('/cricket/league', Cricket_league )
+router.get('/tennis/league', Tennis_league )
+
 router.get('/default-fixture', defaultFixtures)
 router.get('/default/cricket', defaultFixtures_Cricket)
 router.get('/default/tennis', defaultFixtures_Tennis)
 
-router.post('/league', League)
-router.get('/cricket/league', Cricket_league )
-router.get('/tennis/league', Tennis_league )
 router.post('/fixture', Fixtures)
-
 router.get('/live-tennis',  LiveTennis)
 router.get('/live-cricket',  LiveCricket)
 router.get('/live-soccer', Livescore)
