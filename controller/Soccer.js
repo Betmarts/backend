@@ -34,8 +34,6 @@ const Country = ( async (req, res)=>{
 })
 
 
-
-
 const League = ( async (req, res)=>{
     const {sport_name, countryId } = req.body
     if(!countryId || !sport_name){
@@ -60,8 +58,6 @@ const Cricket_league = ( async (req, res)=>{
         res.status(404).json(error)
     })
 })
-
-
 const Tennis_league = ( async (req, res)=>{
 
     await axios.get(`https://apiv2.allsportsapi.com/tennis/?met=Leagues&APIkey=${API_KEY}`)
@@ -73,14 +69,11 @@ const Tennis_league = ( async (req, res)=>{
     })
 })
 
-
 const defaultFixtures = ( async (req, res)=>{
-    
     let odd = []
     let fixture = []
-
         try{
-            await axios.get(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDate}&to=${week}&leagueId=44`)
+            await axios.get(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDate}&to=${week}&leagueId=152`)
             .then((response)=>{
                 fixture.push(response.data.result)
             })
