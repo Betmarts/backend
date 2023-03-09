@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const {Country, League, Fixtures, Livescore, Match, Odds, defaultFixtures,  defaultFixtures_Cricket, defaultFixtures_Tennis, Cricket_league, Tennis_league, LiveTennis, LiveCricket } = require('../controller/Soccer')
+const {Country, League, Fixtures, Livescore, Match, Odds, defaultFixtures,  defaultFixtures_Cricket, defaultFixtures_Tennis, Cricket_league, Tennis_league, LiveTennis, LiveCricket, TodayFootball, TodayCricket, TodayTennis } = require('../controller/Soccer')
 
 router.get('/country', Country)
 
@@ -12,12 +12,18 @@ router.get('/default/tennis', defaultFixtures_Tennis)
 router.post('/league', League)
 router.get('/cricket/league', Cricket_league )
 router.get('/tennis/league', Tennis_league )
-
 router.post('/fixture', Fixtures)
+
 router.get('/live-tennis',  LiveTennis)
 router.get('/live-cricket',  LiveCricket)
-
 router.get('/live-soccer', Livescore)
+
+
+router.get('/today-football', TodayFootball)
+router.get('/today-cricket', TodayCricket)
+router.get('/today-tennis', TodayTennis)
+
+
 router.post('/match', Match)
 router.post('/odd', Odds)
 

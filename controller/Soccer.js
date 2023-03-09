@@ -228,7 +228,6 @@ const Odds = ( async (req, res)=>{
     }
 })
 
-
 const Livescore = ( async (req, res)=>{
     await axios.get(`https://apiv2.allsportsapi.com/football/?met=Livescore&APIkey=${API_KEY}`)
     .then((response)=>{
@@ -238,7 +237,6 @@ const Livescore = ( async (req, res)=>{
         res.status(404).json(error)
     })
 })
-
 
 const LiveTennis = ( async (req, res)=>{
     await axios.get(`https://apiv2.allsportsapi.com/tennis/?met=Livescore&APIkey=${API_KEY}`)
@@ -261,4 +259,45 @@ const LiveCricket= ( async (req, res)=>{
 })
 
 
-module.exports = {Country,LiveCricket, LiveTennis, defaultFixtures,Cricket_league,Tennis_league, League ,defaultFixtures_Cricket ,defaultFixtures_Tennis , Fixtures, Livescore, Match, Odds}
+
+// Get year, month, and day part from the date
+var yearel = date.toLocaleString("default", { year: "numeric" });
+var monthel = date.toLocaleString("default", { month: "2-digit" });
+var dayel = date.toLocaleString("default", { day: "2-digit" });
+
+// Generate yyyy-mm-dd date string
+var formattedDateEL =  yearel + "-" + monthel  + "-" +  dayel
+
+
+const TodayFootball = ( async (req, res)=>{
+    await axios.get(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDateEL}&to=${formattedDateEL}`)
+    .then((response)=>{
+        res.status(200).json(response.data)
+    })
+    .catch((error)=>{
+        res.status(404).json(error)
+    })
+})
+
+const TodayCricket = ( async (req, res)=>{
+    await axios.get(`https://apiv2.allsportsapi.com/cricket/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDateEL}&to=${formattedDateEL}`)
+    .then((response)=>{
+        res.status(200).json(response.data)
+    })
+    .catch((error)=>{
+        res.status(404).json(error)
+    })
+})
+
+const TodayTennis = ( async (req, res)=>{
+    await axios.get(`https://apiv2.allsportsapi.com/tennis/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDateEL}&to=${formattedDateEL}`)
+    .then((response)=>{
+        res.status(200).json(response.data)
+    })
+    .catch((error)=>{
+        res.status(404).json(error)
+    })
+})
+
+
+module.exports = {Country,TodayFootball,  TodayCricket, TodayTennis,  LiveCricket, LiveTennis, defaultFixtures,Cricket_league,Tennis_league, League ,defaultFixtures_Cricket ,defaultFixtures_Tennis , Fixtures, Livescore, Match, Odds}
