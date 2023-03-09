@@ -299,5 +299,44 @@ const TodayTennis = ( async (req, res)=>{
     })
 })
 
+var datePO = new Date();
+// Get year, month, and day part from the date
+var yearPO = date.toLocaleString("default", { year: "numeric" });
+var monthPO = date.toLocaleString("default", { month: "2-digit" });
+var dayPO = date.toLocaleString("default", { day: "2-digit" });
 
-module.exports = {Country,TodayFootball,  TodayCricket, TodayTennis,  LiveCricket, LiveTennis, defaultFixtures,Cricket_league,Tennis_league, League ,defaultFixtures_Cricket ,defaultFixtures_Tennis , Fixtures, Livescore, Match, Odds}
+// Generate yyyy-mm-dd date string
+var formattedDatePO =  yearPO + "-" + monthPO  + "-" + ( parseInt(dayPO) + 1 )
+
+
+const TommorowTennis = ( async (req, res)=>{
+    await axios.get(`https://apiv2.allsportsapi.com/tennis/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDatePO}&to=${formattedDatePO}`)
+    .then((response)=>{
+        res.status(200).json(response.data)
+    })
+    .catch((error)=>{
+        res.status(404).json(error)
+    })
+})
+
+const TommorowCricket = ( async (req, res)=>{
+    await axios.get(`https://apiv2.allsportsapi.com/cricket/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDatePO}&to=${formattedDatePO}`)
+    .then((response)=>{
+        res.status(200).json(response.data)
+    })
+    .catch((error)=>{
+        res.status(404).json(error)
+    })
+})
+
+const TommorowFootball = ( async (req, res)=>{
+    await axios.get(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDatePO}&to=${formattedDatePO}`)
+    .then((response)=>{
+        res.status(200).json(response.data)
+    })
+    .catch((error)=>{
+        res.status(404).json(error)
+    })
+})
+
+module.exports = {Country,TodayFootball,TommorowTennis, TommorowFootball, TommorowCricket,  TodayCricket, TodayTennis,  LiveCricket, LiveTennis, defaultFixtures,Cricket_league,Tennis_league, League ,defaultFixtures_Cricket ,defaultFixtures_Tennis , Fixtures, Livescore, Match, Odds}
