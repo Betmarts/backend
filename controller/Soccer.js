@@ -33,15 +33,7 @@ const Country = ( async (req, res)=>{
     }
 })
 
-const Livescore = ( async (req, res)=>{
-    await axios.get(`https://apiv2.allsportsapi.com/football/?met=Livescore&APIkey=${API_KEY}`)
-    .then((response)=>{
-        res.status(200).json(response.data)
-    })
-    .catch((error)=>{
-        res.status(404).json(error)
-    })
-})
+
 
 
 const League = ( async (req, res)=>{
@@ -236,4 +228,27 @@ const Odds = ( async (req, res)=>{
     }
 })
 
-module.exports = {Country, defaultFixtures,Cricket_league,Tennis_league, League ,defaultFixtures_Cricket ,defaultFixtures_Tennis , Fixtures, Livescore, Match, Odds}
+const Live_Football = ( async (req, res)=>{
+    try{
+        await axios.get(`https://apiv2.allsportsapi.com/football/?&met=Odds&APIkey=${API_KEY}`)
+        .then((response)=>{
+                res.status(200).json(response.data)
+        })
+        .catch((error)=>{
+            res.status(404).json(error)
+        })
+    }
+    catch(err){
+        res.status(500).json(err)
+    }
+})
+const Livescore = ( async (req, res)=>{
+    await axios.get(`https://apiv2.allsportsapi.com/football/?met=Livescore&APIkey=${API_KEY}`)
+    .then((response)=>{
+        res.status(200).json(response.data)
+    })
+    .catch((error)=>{
+        res.status(404).json(error)
+    })
+})
+module.exports = {Country,Live_Football, defaultFixtures,Cricket_league,Tennis_league, League ,defaultFixtures_Cricket ,defaultFixtures_Tennis , Fixtures, Livescore, Match, Odds}
