@@ -3,8 +3,7 @@ const UserProfile =  require('../model/users')
 const UsersProfile =  require('../model/profile')
 const WalletDB = require("../model/Wallet")
 
-
-// Get single user's profile
+// Get single user
 const SingleUser = async(req,res) =>{
    const user_id = req.user._id
    try{
