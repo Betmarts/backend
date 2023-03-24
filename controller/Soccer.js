@@ -12,7 +12,7 @@ var day = date.toLocaleString("default", { day: "2-digit" });
 // Generate yyyy-mm-dd date string
 var formattedDate =  year + "-" + month  + "-" +  day 
 
-var week =  year + "-" + month  + "-" + ( parseInt(day) + 6 )
+var week =  year + "-" + month  + "-" + ( parseInt(day) + 3 )
 
 const Country = ( async (req, res)=>{
     try{
@@ -71,23 +71,27 @@ const Tennis_league = ( async (req, res)=>{
 
 const Fixtures = ( async (req, res)=>{
     const {sport_name, leagueId } = req.body
-    let odd = [ ]
-    let fixture = [ ]
+    let odd = []
+    let oddEl = ''
+    let fixture = []
+
     if(!leagueId || !sport_name){
         res.status(500).json({error: "League Id is missing"})
     }else{
         try{
-            await axios.get(`https://apiv2.allsportsapi.com/${sport_name}/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDate}&to=${week}&leagueId=${leagueId}`)
+            await axios.get(`https://apiv2.allsportsapi.com/football/?met=OddsLive&APIkey=${API_KEY}`)
             .then((response)=>{
-                fixture.push(response.data.result)
+                odd.push(response.data.result)
+              oddEl = (Object.keys(response.data.result))
             })
             .catch((error)=>{
                 res.status(404).json(error)
             })
-            for(let i = 0; i < fixture[0].length; i++){
-                await axios.get(`https://apiv2.allsportsapi.com/football/?&met=Odds&APIkey=${API_KEY}&matchId=${fixture[0][i].event_key}`)
+
+            for(let i = 0; i < oddEl.length; i++){
+                await axios.get(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDate}&to=${week}&matchId=${oddEl[i]}`)
                 .then((response)=>{
-                    odd.push(response.data.result[fixture[0][i].event_key][0])
+                    fixture.push(response.data.result)
                 })
                 .catch((error)=>{
                     res.status(404).json(error)
@@ -163,28 +167,25 @@ const Tennis_fixtures = ( async (req, res)=>{
 const defaultFixtures = ( async (req, res)=>{
     let odd = []
     let fixture = []
-        try{
-            await axios.get(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDate}&to=${week}&leagueId=152`)
-            .then((response)=>{
-                fixture.push(response.data.result)
-            })
-            .catch((error)=>{
-                res.status(404).json(error)
-            })
 
-        for(let i = 0; i < fixture[0].length; i++){
-            await axios.get(`https://apiv2.allsportsapi.com/football/?&met=Odds&APIkey=${API_KEY}&matchId=${fixture[0][i].event_key}`)
-            .then((response)=>{
-                odd.push(response.data.result[fixture[0][i].event_key][0])
-            })
-            .catch((error)=>{
-                res.status(404).json(error)
-            })
-        }
-        res.status(200).json({fixture, odd})
-    }catch(err){
-        res.status(400).json(err)
-    }
+    // await axios.get(`https://apiv2.allsportsapi.com/football/?met=OddsLive&APIkey=${API_KEY}`)
+    // .then((response)=>{
+    //     res.status(200).json(response.data)
+    // })
+
+        // for(let i = 0; i < fixture[0].length; i++){
+               await axios.get(`https://apiv2.allsportsapi.com/football/?met=OddsLive&APIkey=${API_KEY}`)
+                .then((response)=>{
+                    res.status(200).json(response.data.result)
+                    console.log(Object.keys(response.data.result))
+                })
+                .catch((error)=>{
+                    res.status(404).json(error)
+                })
+        // }
+    //     console.log(odd)
+    //  console.log(Object.keys(odd))           
+        // res.status(200).json({fixture})
 })
 
 const Match = ( async (req, res)=>{
