@@ -123,17 +123,17 @@ let b = {
 // })
 
 // console.log(b)
-let cap = []
+// let cap = []
 
-for(let i = 0; i < a.length; i++){
-    let o = (a[i].key)
-    if(b[o]){
-        if(b[o][0].id === o){
-             c = { ...b[o], ...a[i]}
-                cap.push(c)
-        }
-    }
-}
+// for(let i = 0; i < a.length; i++){
+//     let o = (a[i].key)
+//     if(b[o]){
+//         if(b[o][0].id === o){
+//              c = { ...b[o], ...a[i]}
+//                 cap.push(c)
+//         }
+//     }
+// }
 // console.log(cap)
 
 
@@ -169,7 +169,7 @@ const Fixtures = ( async (req, res)=>{
                 }
             }
         try{
-            res.status(200).json(cap)
+            res.status(200).json({fixture: cap})
         }catch(err){
             res.status(400).json(err)
         }
