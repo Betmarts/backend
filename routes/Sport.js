@@ -13,7 +13,7 @@ router.post('/league', League)
 router.get('/cricket/league', Cricket_league )
 router.get('/tennis/league', Tennis_league )
 
-router.post('/fixture', Fixtures)
+router.get('/fixture', Fixtures)
 
 // Default fixture
 router.get('/default-fixture', defaultFixtures)

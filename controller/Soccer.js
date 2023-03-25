@@ -70,14 +70,10 @@ const Tennis_league = ( async (req, res)=>{
 })
 
 const Fixtures = ( async (req, res)=>{
-    const {sport_name, leagueId } = req.body
     let odd = []
     let oddEl = ''
     let fixture = []
 
-    if(!leagueId || !sport_name){
-        res.status(500).json({error: "League Id is missing"})
-    }else{
         try{
             await axios.get(`https://apiv2.allsportsapi.com/football/?met=OddsLive&APIkey=${API_KEY}`)
             .then((response)=>{
@@ -101,7 +97,7 @@ const Fixtures = ( async (req, res)=>{
         }catch(err){
             res.status(400).json(err)
         }
-    }
+    
 })
 
 const Cricket_fixtures = ( async (req, res)=>{
