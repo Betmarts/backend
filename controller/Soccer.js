@@ -116,32 +116,29 @@ let b = {
 },]
 }
 
-// let obj = Object.keys(b)
+let obj = Object.keys(b)
 
-// let r = a.filter((e)=>{
-//     console.log(obj)
-// })
+let r = a.filter((e)=>{
+    console.log(obj)
+})
 
 // console.log(b)
-// let cap = []
+let cap = []
 
-// for(let i = 0; i < a.length; i++){
-//     let o = (a[i].key)
-//     if(b[o]){
-//         if(b[o][0].id === o){
-//              c = { ...b[o], ...a[i]}
-//                 cap.push(c)
-//         }
-//     }
-// }
-// console.log(cap)
-
+for(let i = 0; i < a.length; i++){
+    let o = (a[i].key)
+    if(b[o]){
+        if(b[o][0].id === o){
+             c = { ...{odds:b[o]}, ...{fixtures: a[i]}}
+                cap.push(c)
+        }
+    }
+}
 
 const Fixtures = ( async (req, res)=>{
     let odd = ''
     let cap = []
     let fixture = ''
-
 
             await axios.get(`https://apiv2.allsportsapi.com/football/?met=OddsLive&APIkey=${API_KEY}`)
             .then((response)=>{
@@ -163,13 +160,13 @@ const Fixtures = ( async (req, res)=>{
                 let o = (fixture[i].event_key)
                 if(odd[o]){
                     if(odd[o][0].match_id === o){
-                        c = { ...odd[o], ...fixture[i]}
+                        c = { ...{odds : odd[o]}, ...{fixtures :fixture[i]}}
                         cap.push(c)
                     }
                 }
             }
         try{
-            res.status(200).json({fixture: cap})
+            res.status(200).json({result: cap})
         }catch(err){
             res.status(400).json(err)
         }
