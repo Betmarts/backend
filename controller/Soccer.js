@@ -12,7 +12,7 @@ var day = date.toLocaleString("default", { day: "2-digit" });
 // Generate yyyy-mm-dd date string
 var formattedDate =  year + "-" + month  + "-" +  day 
 
-var week =  year + "-" + month  + "-" + ( parseInt(day) + 3 )
+var week =  year + "-" + month  + "-" + ( parseInt(day) + 2 )
 
 const Country = ( async (req, res)=>{
     try{
