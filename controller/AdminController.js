@@ -1,7 +1,6 @@
 const BookingDB =  require('../model/Booking')
 const crypto = require('crypto');
 
-
 // Get all user's profile
 const BookingCode = async(req,res) =>{
 
