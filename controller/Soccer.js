@@ -129,20 +129,30 @@ for(let i = 0; i < a.length; i++){
     let o = (a[i].key)
     if(b[o]){
         if(b[o][0].id === o){
-             c = { ...{odds:b[o]}, ...{fixtures: a[i]}}
+             c = { ...{odds:b[o][0]}, ...{fixtures: a[i]}}
                 cap.push(c)
         }
     }
 }
+
+// console.log(cap)
 
 const Fixtures = ( async (req, res)=>{
     let odd = ''
     let cap = []
     let fixture = ''
 
-            await axios.get(`https://apiv2.allsportsapi.com/football/?met=OddsLive&APIkey=${API_KEY}`)
+            // await axios.get(`https://apiv2.allsportsapi.com/football/?met=OddsLive&APIkey=${API_KEY}`)
+            // .then((response)=>{
+            //     odd = (response.data.result)
+            // })
+            // .catch((error)=>{
+            //     res.status(404).json(error)
+            // })
+           
+            await axios.get(` https://apiv2.allsportsapi.com/football/?&met=Odds&APIkey=${API_KEY}&from=${formattedDate}&to=${week}`)
             .then((response)=>{
-                odd = (response.data.result)
+                  odd = (response.data.result)
             })
             .catch((error)=>{
                 res.status(404).json(error)
@@ -160,7 +170,7 @@ const Fixtures = ( async (req, res)=>{
                 let o = (fixture[i].event_key)
                 if(odd[o]){
                     if(odd[o][0].match_id === o){
-                        c = { ...{odds : odd[o]}, ...{fixtures :fixture[i]}}
+                        c = { ...{odds : odd[o][3]}, ...{fixtures :fixture[i]}}
                         cap.push(c)
                     }
                 }
