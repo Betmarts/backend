@@ -205,7 +205,6 @@ const Cricket_fixtures = ( async (req, res)=>{
 })
 
 
-
 const Tennis_fixtures = ( async (req, res)=>{
     let fix = [ ]
     let odd = [ ]
