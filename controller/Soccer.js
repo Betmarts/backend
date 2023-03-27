@@ -175,6 +175,54 @@ try{
 }
 })
 
+// update userProfile 
+const defaultMatch = async (req, res) =>{
+   
+    const { game_id } = req.body
+ 
+    if( !game_id ){
+        res.status(401).json({error : "All field is required"})
+    }else{
+       let odd = ''
+       let cap = []
+       let fixture = ''
+       const user_id = req.user._id
+       try{
+          await axios.get(`https://apiv2.allsportsapi.com/football/?&met=Odds&APIkey=${API_KEY}&from=${formattedDate}&to=${week}&matchId=${game_id}`)
+          .then((response)=>{
+             odd = (response.data.result)
+          })
+          .catch((error)=>{
+             res.status(404).json(error)
+          })
+          
+          await axios.get(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${API_KEY}&matchId=${game_id}`)
+          .then((response)=>{
+              fixture = (response.data.result)
+          })
+          .catch((error)=>{
+              res.status(404).json(error)
+          })
+          
+          for(let i = 0; i < fixture.length; i++){
+              let o = (fixture[i].event_key)
+              if(odd[o]){
+                  if(odd[o][0].match_id === o){
+                      c = { ...odd[o][3], ...fixture[i]}
+                      cap.push(c)
+                  }
+              }
+          }
+          res.status(201).json({result : cap})
+       } catch(err){
+          res.status(500).json({message: err.message})
+       }
+    }
+ }
+
+
+
+
 const Cricket_fixtures = ( async (req, res)=>{
     let fix = [ ]
     let odd = [ ]
@@ -382,4 +430,4 @@ const TommorowFootball = ( async (req, res)=>{
 
 module.exports = { Country, TodayFootball, TommorowTennis, TommorowFootball, TommorowCricket, 
     TodayCricket, TodayTennis,  LiveCricket,  LiveTennis,  defaultFixtures, Cricket_league, Tennis_league, 
-    League ,Tennis_fixtures, Fixtures,  Cricket_fixtures,  Livescore,  Match }
+    League ,Tennis_fixtures, Fixtures,  Cricket_fixtures,  Livescore,  Match, defaultMatch }
