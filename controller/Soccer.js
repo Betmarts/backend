@@ -186,7 +186,7 @@ const defaultMatch = async (req, res) =>{
        let odd = ''
        let cap = []
        let fixture = ''
-       const user_id = req.user._id
+
        try{
           await axios.get(`https://apiv2.allsportsapi.com/football/?&met=Odds&APIkey=${API_KEY}&from=${formattedDate}&to=${week}&matchId=${game_id}`)
           .then((response)=>{
