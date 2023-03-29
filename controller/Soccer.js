@@ -70,86 +70,228 @@ const Tennis_league = ( async (req, res)=>{
 })
 
 
-let a = [{
-    key: 90,
-    address: "Uyo"
-},{
-    key: 80,
-    address: "Abia"
-},
-{
-    key: 70,
-    address: "Abia"
-}
-]
-
-let b = {
-   "90" :[{
-    name: "Okon",
-    course: "HTML",
-    id:90
-},
-{
-    cart: "ol",
-    poem: "Mo",
-    id:90
-},
+ let r = {
+    "1051349": [
+    {
+        "odd_name": "Match Corners",
+        "is_odd_suspended": "No",
+        "odd_type": "Over",
+        "odd_value": "1.833",
+        "odd_participant_handicap": "8",
+        "odd_last_updated": "2023-03-29 16:08:36",
+        "match_id": 1051349
+    },
+    {
+        "odd_name": "mey",
+        "is_odd_suspended": "No",
+        "odd_type": "Exactly",
+        "odd_value": "4.5",
+        "odd_participant_handicap": "8",
+        "odd_last_updated": "2023-03-29 16:09:36",
+        "match_id": 1051349
+    },
+    {
+        "odd_name": "Match Corners",
+        "is_odd_suspended": "No",
+        "odd_type": "Under",
+        "odd_value": "3",
+        "odd_participant_handicap": "8",
+        "odd_last_updated": "2023-03-29 16:09:36",
+        "match_id": 1051349
+    },
+    {
+        "odd_name": "Match Corners",
+        "is_odd_suspended": "No",
+        "odd_type": "Over",
+        "odd_value": "5",
+        "odd_participant_handicap": "10",
+        "odd_last_updated": "2023-03-29 16:09:11",
+        "match_id": 1051349
+    },
+    {
+        "odd_name": "Final Score",
+        "is_odd_suspended": "Yes",
+        "odd_type": "2-1",
+        "odd_value": "9",
+        "odd_participant_handicap": null,
+        "odd_last_updated": "2023-03-29 15:37:11",
+        "match_id": 1164930
+    },
+    {
+        "odd_name": "Final Score",
+        "is_odd_suspended": "Yes",
+        "odd_type": "3-0",
+        "odd_value": "1.533",
+        "odd_participant_handicap": null,
+        "odd_last_updated": "2023-03-29 15:52:36",
+        "match_id": 1164930
+    },
+    {
+        "odd_name": "Final Score",
+        "is_odd_suspended": "Yes",
+        "odd_type": "3-1",
+        "odd_value": "9.5",
+        "odd_participant_handicap": null,
+        "odd_last_updated": "2023-03-29 15:52:11",
+        "match_id": 1164930
+    },
+    {
+        "odd_name": "Final Score",
+        "is_odd_suspended": "Yes",
+        "odd_type": "3-2",
+        "odd_value": "51",
+        "odd_participant_handicap": null,
+        "odd_last_updated": "2023-03-29 15:49:11",
+        "match_id": 1164930
+    },
+    {
+        "odd_name": "Final Score",
+        "is_odd_suspended": "Yes",
+        "odd_type": "4-0",
+        "odd_value": "3.25",
+        "odd_participant_handicap": null,
+        "odd_last_updated": "2023-03-29 15:52:11",
+        "match_id": 1164930
+    },
 ],
-  "80":[ {
-    name: "James",
-    course: "CSS",
-    id:80
-},
-{
-    cart: "op",
-    poem: "iu",
-    id:90
-},],
-  "70" :[ {
-    name: "Sam",
-    course: "js",
-    id:70
-},{
-    cart: "ol",
-    poem: "Mo",
-    id:90
-},]
+"1051350": [
+    {
+        "odd_name": "Ma",
+        "is_odd_suspended": "No",
+        "odd_type": "Over",
+        "odd_value": "1.833",
+        "odd_participant_handicap": "8",
+        "odd_last_updated": "2023-03-29 16:08:36",
+        "match_id": 1051349
+    },
+    {
+        "odd_name": "Match Corners",
+        "is_odd_suspended": "No",
+        "odd_type": "Exactly",
+        "odd_value": "4.5",
+        "odd_participant_handicap": "8",
+        "odd_last_updated": "2023-03-29 16:09:36",
+        "match_id": 1051349
+    },
+    {
+        "odd_name": "Match Corners",
+        "is_odd_suspended": "No",
+        "odd_type": "Under",
+        "odd_value": "3",
+        "odd_participant_handicap": "8",
+        "odd_last_updated": "2023-03-29 16:09:36",
+        "match_id": 1051349
+    },
+    {
+        "odd_name": "Match Corners",
+        "is_odd_suspended": "No",
+        "odd_type": "Over",
+        "odd_value": "5",
+        "odd_participant_handicap": "10",
+        "odd_last_updated": "2023-03-29 16:09:11",
+        "match_id": 1051349
+    },
+    {
+        "odd_name": "Final Score",
+        "is_odd_suspended": "Yes",
+        "odd_type": "2-1",
+        "odd_value": "9",
+        "odd_participant_handicap": null,
+        "odd_last_updated": "2023-03-29 15:37:11",
+        "match_id": 1164930
+    },
+    {
+        "odd_name": "Final Score",
+        "is_odd_suspended": "Yes",
+        "odd_type": "3-0",
+        "odd_value": "1.533",
+        "odd_participant_handicap": null,
+        "odd_last_updated": "2023-03-29 15:52:36",
+        "match_id": 1164930
+    },
+    {
+        "odd_name": "Final Score",
+        "is_odd_suspended": "Yes",
+        "odd_type": "3-1",
+        "odd_value": "9.5",
+        "odd_participant_handicap": null,
+        "odd_last_updated": "2023-03-29 15:52:11",
+        "match_id": 1164930
+    },
+    {
+        "odd_name": "Final Score",
+        "is_odd_suspended": "Yes",
+        "odd_type": "3-2",
+        "odd_value": "51",
+        "odd_participant_handicap": null,
+        "odd_last_updated": "2023-03-29 15:49:11",
+        "match_id": 1164930
+    },
+    {
+        "odd_name": "Final Score",
+        "is_odd_suspended": "Yes",
+        "odd_type": "4-0",
+        "odd_value": "3.25",
+        "odd_participant_handicap": null,
+        "odd_last_updated": "2023-03-29 15:52:11",
+        "match_id": 1164930
+    }
+ ]
 }
 
-// let cap = []
 
-// for(let i = 0; i < a.length; i++){
-//     let o = (a[i].key)
-//     if(b[o]){
-//         if(b[o][0].id === o){
-//              c = { ...b[o][0], ...a[i]}
-//                 cap.push(c)
-//         }
-//     }
-// }
+let b = [ {
+        name: "Valiant",
+        course: "HTML",
+        id:1051349
+    }, {
+        name: "King",
+        course: "CSS",
+        id:1051350
+    },{
+        name: "King",
+        course: "Javascript",
+        id:12
+    },
+    {
+        name: "King",
+        course: "Node Js",
+        id:12
+}]
 
-// console.log(cap)
+let li = (Object.keys(r))
+ let numberArray = li.map(Number);
+
+for(let i = 0; i < b.length; i++){
+        if(numberArray.includes(b[i].id)){
+            for(let f = 0; f < r[b[i].id].length; f++){
+                if(r[b[i].id][f].odd_name === "Final Score"){
+                    // console.log({...r[b[i].id][f] , ...b[i]})
+                }
+            }
+    }
+}
 
 const Fixtures = ( async (req, res)=>{
     let odd = ''
     let cap = []
     let fixture = ''
 
-    // await axios.get(`https://apiv2.allsportsapi.com/football/?met=OddsLive&APIkey=${API_KEY}`)
-    // .then((response)=>{
-    //     odd = (response.data.result)
-    // })
-    // .catch((error)=>{
-    //     res.status(404).json(error)
-    // })
-    
-    await axios.get(` https://apiv2.allsportsapi.com/football/?&met=Odds&APIkey=${API_KEY}&from=${formattedDate}&to=${week}`)
+    await axios.get(`https://apiv2.allsportsapi.com/football/?met=OddsLive&APIkey=${API_KEY}`)
     .then((response)=>{
         odd = (response.data.result)
     })
     .catch((error)=>{
         res.status(404).json(error)
     })
+    
+    // await axios.get(` https://apiv2.allsportsapi.com/football/?&met=Odds&APIkey=${API_KEY}&from=${formattedDate}&to=${week}`)
+    // .then((response)=>{
+    //     odd = (response.data.result)
+    // })
+    // .catch((error)=>{
+    //     res.status(404).json(error)
+    // })
 
     await axios.get(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDate}&to=${week}`)
     .then((response)=>{
@@ -159,12 +301,15 @@ const Fixtures = ( async (req, res)=>{
         res.status(404).json(error)
     })
 
+    let li = (Object.keys(odd))
+    let numberArray = li.map(Number);
+
     for(let i = 0; i < fixture.length; i++){
-        let o = (fixture[i].event_key)
-        if(odd[o]){
-            if(odd[o][0].match_id === o){
-                c = { ...odd[o][3], ...fixture[i]}
-                cap.push(c)
+        if(numberArray.includes(fixture[i].event_key)){
+            for(let f = 0; f < odd[fixture[i].event_key].length; f++){
+                if(odd[fixture[i].event_key][f].odd_name === "Fulltime Result"){
+                    cap.push({...odd[fixture[i].event_key][f] , ...fixture[i]})
+                }
             }
         }
     }
@@ -188,32 +333,32 @@ const defaultMatch = async (req, res) =>{
        let fixture = ''
 
        try{
-          await axios.get(`https://apiv2.allsportsapi.com/football/?&met=Odds&APIkey=${API_KEY}&from=${formattedDate}&to=${week}&matchId=${game_id}`)
-          .then((response)=>{
-             odd = (response.data.result)
-          })
-          .catch((error)=>{
-             res.status(404).json(error)
-          })
+        //   await axios.get(`https://apiv2.allsportsapi.com/football/?&met=Odds&APIkey=${API_KEY}&from=${formattedDate}&to=${week}&matchId=${game_id}`)
+        //   .then((response)=>{
+        //      res.json(response.data.result)
+        //   })
+        //   .catch((error)=>{
+        //      res.status(404).json(error)
+        //   })
           
           await axios.get(`https://apiv2.allsportsapi.com/football/?met=Fixtures&APIkey=${API_KEY}&matchId=${game_id}`)
           .then((response)=>{
-              fixture = (response.data.result)
+              res.json(response.data.result)
           })
           .catch((error)=>{
               res.status(404).json(error)
           })
-          
-          for(let i = 0; i < fixture.length; i++){
-              let o = (fixture[i].event_key)
-              if(odd[o]){
-                  if(odd[o][0].match_id === o){
-                      c = { ...odd[o][3], ...fixture[i]}
-                      cap.push(c)
-                  }
-              }
-          }
-          res.status(201).json({result : cap})
+
+        //   for(let i = 0; i < fixture.length; i++){
+        //       let o = (fixture[i].event_key)
+        //       if(odd[o]){
+        //           if(odd[o][0].match_id === o){
+        //               c = { ...odd[o][3], ...fixture[i]}
+        //               cap.push(c)
+        //           }
+        //       }
+        //   }
+        //   res.status(201).json({result : cap})
        } catch(err){
           res.status(500).json({message: err.message})
        }

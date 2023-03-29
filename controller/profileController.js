@@ -6,7 +6,6 @@ const axios = require("axios")
 
 const API_KEY = 'dd0b81634308844ba6297f591da129124fd417047dd7ef808e4b47ecff0b193b'
 
-
 var date = new Date();
 
 // Get year, month, and day part from the date
