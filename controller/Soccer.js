@@ -157,6 +157,7 @@ const Fixtures = ( async (req, res)=>{
     .catch((error)=>{
         res.status(404).json(error)
     })
+    
 
     for(let i = 0; i < fixture.length; i++){
         let o = (fixture[i].event_key)
