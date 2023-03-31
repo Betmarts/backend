@@ -35,6 +35,7 @@ const Withdraw = async (req, res) => {
         const status = "pending"
         const  date_time = new Date()
         const type = `Withdraw`
+
     try{
     const depositData = await deposit.create({user_id, coin_name,  coin_amount, usd_amount, wallet_address,gas_fee,  network_address,type, status, date_time })
 
@@ -55,6 +56,8 @@ const depositHistory  = async(req, res) => {
         res.status(500).json({error: error.message})
     }
 }
+
+
 
 // Swap coins
 const ToMain = async(req,res) =>{
@@ -112,6 +115,7 @@ const ToMain = async(req,res) =>{
           const userResult = await deposit.findOne({user_id})
           res.status(200).json(userResult)
        }
+ 
        if(coin === "matic"){
           let totalcoin = user.matic -price
           let totalbal = user.accBalance + priceConvert
@@ -139,7 +143,7 @@ const ToMain = async(req,res) =>{
           const userResult = await deposit.findOne({user_id})
           res.status(200).json(userResult)
        }
-
+ 
        if(coin === "btc"){
           let totalcoin = user.btc -price
           let totalbal = user.accBalance + priceConvert

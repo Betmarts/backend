@@ -25,6 +25,7 @@ app.use('/api/transaction', Transaction)
 
 // Sport routes
 app.use('/api/sport', Sport)
+
 mongoose.set('strictQuery', false);
 
 // connect database
