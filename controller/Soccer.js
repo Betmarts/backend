@@ -224,29 +224,37 @@ const defaultMatch = async (req, res) =>{
 
 
 const Cricket_fixtures = ( async (req, res)=>{
-    let fix = [ ]
-    let odd = [ ]
+    let fixture = ''
+    let odd = ''
+    let cap = []
 
-    await axios.get(`https://apiv2.allsportsapi.com/cricket/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDate}&to=${week}`)
+    await axios.get(`https://apiv2.allsportsapi.com/cricket/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDate}&to=${formattedDate}`)
     .then((response)=>{
-        fix.push(response.data.result)
+        fixture = (response.data.result)
     })
     .catch((error)=>{
         console.log("error")
     })
 
-    for(let i = 0; i < fix[0].length; i++){
-        await axios.get(`https://apiv2.allsportsapi.com/cricket/?&met=Odds&APIkey=${API_KEY}&matchId=${fix[0][i].event_key}`)
-        .then((response)=>{
+    await axios.get(`https://apiv2.allsportsapi.com/cricket/?&met=Odds&APIkey=${API_KEY}&from=${formattedDate}&to=${formattedDate}`)
+    .then((response)=>{
+        odd = (response.data.result)
+    })
+    .catch((error)=>{
+        res.status(404).json(error)
+    })
 
-            odd.push(response.data.result)
-        })
-        .catch((error)=>{
-            res.status(404).json(error)
-        })
+
+    for(let i = 0; i < fixture.length; i++){
+        let o = (fixture[i].event_key)
+        if(odd[o]){
+            c = { ...odd[o], ...fixture[i]}
+            cap.push(c)
+        }
     }
+
     try{
-        res.status(200).json({fix, odd})
+        res.status(200).json({game: cap})
     }catch(err){
         res.status(400).json(err)
     }
@@ -257,7 +265,7 @@ const Tennis_fixtures = ( async (req, res)=>{
     let fix = [ ]
     let odd = [ ]
 
-    await axios.get(`https://apiv2.allsportsapi.com/cricket/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDate}&to=${week}`)
+    await axios.get(`https://apiv2.allsportsapi.com/cricket/?met=Fixtures&APIkey=${API_KEY}&from=${formattedDate}&to=${formattedDate}`)
     .then((response)=>{
         fix.push(response.data.result)
     })
